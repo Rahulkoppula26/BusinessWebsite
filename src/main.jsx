@@ -20,11 +20,11 @@ const appRouter = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorBoundary />,
     children: [
-      { 
+      {
         index: true,
         element: <BodyContent />
       },
-      { 
+      {
         path: "cart",
         element: <CartPage />
       },
@@ -62,7 +62,9 @@ const appRouter = createBrowserRouter([
       }
     ],
   }
-]);
+], {
+  basename: import.meta.env.MODE === 'production' ? '/BusinessWebsite/' : undefined
+});
 
 createRoot(document.getElementById("root")).render(
   <RouterProvider router={appRouter} />

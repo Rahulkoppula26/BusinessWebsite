@@ -1,12 +1,12 @@
-import { accessories } from '../../utils/accessoriesMockdata.js';
 import Accessory from '../models/accessoriesModel.js';
 
 export const getAllAccessories = async (req, res) => {
   try {
+    const accessories = await Accessory.find();
     res.json(accessories);
   } catch (error) {
     console.error('Error fetching accessories:', error);
-    res.json([]); // Return empty array on error
+    res.status(500).json({ message: error.message });
   }
 };
 

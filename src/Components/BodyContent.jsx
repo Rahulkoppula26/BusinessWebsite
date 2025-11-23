@@ -13,15 +13,21 @@ function BodyContent() {
     const [selectedCategory, setSelectedCategory] = useState('Cloths');
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
                 const response = await fetch('/api/clothes');
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
                 const data = await response.json();
                 setProducts(data);
-            } catch (error) {
-                console.error('Error fetching products:', error);
+                setError(null);
+            } catch (err) {
+                console.error('Error fetching products:', err);
+                setError(err.message);
             } finally {
                 setLoading(false);
             }
@@ -71,6 +77,8 @@ function BodyContent() {
               <div className="product-grid">
                 {loading ? (
                   <p>Loading products...</p>
+                ) : error ? (
+                  <p>Error: {error}</p>
                 ) : (
                 products.map(product => (
                   <div key={product.id} className="product-card">

@@ -1,10 +1,11 @@
-import { gifts } from '../../utils/giftsMockdata.js';
 import Gift from '../models/giftsModel.js';
 
 export const getAllGifts = async (req, res) => {
   try {
+    const gifts = await Gift.find();
     res.json(gifts);
   } catch (error) {
+    console.error('Error fetching gifts:', error);
     res.status(500).json({ message: error.message });
   }
 };
