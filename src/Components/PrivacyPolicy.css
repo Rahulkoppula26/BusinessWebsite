@@ -1,0 +1,130 @@
+/* Terms & Conditions Page Styles */
+
+.terms-container {
+    max-width: 1000px;
+    margin: 120px auto 40px auto; /* Account for fixed header */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+.terms-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 20px;
+}
+
+.terms-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.last-updated {
+    font-size: 1rem;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.terms-content {
+    padding: 0 10px;
+}
+
+.terms-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.terms-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.terms-section h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.terms-section h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 50px;
+    height: 3px;
+    background-color: #3498db;
+    border-radius: 2px;
+}
+
+.terms-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .terms-container {
+        margin: 100px 20px 40px 20px;
+        padding: 15px;
+    }
+
+    .terms-header h1 {
+        font-size: 2rem;
+    }
+
+    .terms-section h2 {
+        font-size: 1.3rem;
+    }
+
+    .terms-section p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terms-container {
+        margin: 90px 10px 40px 10px;
+        padding: 10px;
+    }
+
+    .terms-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .terms-section h2 {
+        font-size: 1.2rem;
+    }
+
+    .terms-section p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .terms-container {
+        box-shadow: none;
+        margin: 0;
+        max-width: none;
+    }
+
+    .terms-header {
+        border-bottom: 1px solid #000;
+    }
+
+    .terms-section {
+        page-break-inside: avoid;
+    }
+}

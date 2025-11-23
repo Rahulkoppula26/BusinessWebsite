@@ -1,0 +1,5 @@
+- [x] Update image paths in src/utils/mockdata.js from /src/assets/ to /public/
+- [x] Update image paths in src/utils/accessoriesMockdata.js from /src/assets/ to /public/
+- [x] Update image paths in src/utils/giftsMockdata.js from /src/assets/ to /public/
+- [x] Update image path in hero-section div in BodyContent.jsx from /src/assets/ to /public/
+- [ ] Verify image loading after changes
