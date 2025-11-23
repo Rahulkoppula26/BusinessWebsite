@@ -12,7 +12,7 @@ function Gifts() {
     useEffect(() => {
         const fetchGifts = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/gifts');
+                const response = await fetch('/api/gifts');
                 const data = await response.json();
                 setGifts(data);
             } catch (error) {
@@ -26,9 +26,9 @@ function Gifts() {
     }, []);
 
     const handleToggleFavorite = (product) => {
-        const isFavorite = favorites.some(item => item.id === product.id);
+        const isFavorite = favorites.some(item => item._id === product._id);
         if (isFavorite) {
-            setFavorites(favorites.filter(item => item.id !== product.id));
+            setFavorites(favorites.filter(item => item._id !== product._id));
             setNotification({ message: 'Removed from favorites!' });
         } else {
             setFavorites([...favorites, product]);
@@ -37,7 +37,7 @@ function Gifts() {
     };
 
     const isFavorite = (productId) => {
-        return favorites.some(item => item.id === productId);
+        return favorites.some(item => item._id === productId);
     };
 
     if (loading) {
@@ -47,20 +47,20 @@ function Gifts() {
     return (
         <div className="product-grid">
             {gifts.map(product => (
-                <div key={product.id} className="product-card">
+                <div key={product._id} className="product-card">
                     <button
-                        className={`favorite-btn ${isFavorite(product.id) ? 'favorited' : ''}`}
+                        className={`favorite-btn ${isFavorite(product._id) ? 'favorited' : ''}`}
                         onClick={(e) => {
                             e.stopPropagation();
                             handleToggleFavorite(product);
                         }}
-                        title={isFavorite(product.id) ? 'Remove from favorites' : 'Add to favorites'}
+                        title={isFavorite(product._id) ? 'Remove from favorites' : 'Add to favorites'}
                     >
-                        <FontAwesomeIcon icon={isFavorite(product.id) ? faHeartSolid : faHeartRegular} />
+                        <FontAwesomeIcon icon={isFavorite(product._id) ? faHeartSolid : faHeartRegular} />
                     </button>
 
                     <div className="product-image-container">
-                        <Link to={`/product/${product.id}`}>
+                        <Link to={`/gift/${product._id}`}>
                             <div className="image-slider">
                                 {product.images.map((image, index) => (
                                     <img
@@ -73,7 +73,7 @@ function Gifts() {
                             </div>
                         </Link>
                     </div>
-                    <Link to={`/product/${product.id}`}>
+                    <Link to={`/gift/${product._id}`}>
                         <div className="product-details">
                             <h2 className="product-title">{product.name}</h2>
                             <p className="product-description">{product.caption}</p>

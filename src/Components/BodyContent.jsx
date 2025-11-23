@@ -17,7 +17,7 @@ function BodyContent() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/clothes');
+                const response = await fetch('/api/clothes');
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {
