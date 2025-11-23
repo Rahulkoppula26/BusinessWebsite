@@ -27,7 +27,6 @@
     "@stripe/stripe-js": "^8.4.0",
     "@tailwindcss/vite": "^4.1.17",
     "cors": "^2.8.5",
-    "esbuild": "^0.27.0",
     "express": "^5.1.0",
     "mongodb": "^7.0.0",
     "mongoose": "^9.0.0",
