@@ -1,5 +1,4 @@
 import { products } from '../../utils/mockdata.js';
-import Cloth from '../models/clothesModel.js';
 
 export const getAllClothes = async (req, res) => {
   try {
@@ -12,7 +11,7 @@ export const getAllClothes = async (req, res) => {
 
 export const getClothById = async (req, res) => {
   try {
-    const cloth = await Cloth.findById(req.params.id);
+    const cloth = products.find(p => p.id === parseInt(req.params.id));
     if (cloth) {
       res.json(cloth);
     } else {
@@ -24,9 +23,9 @@ export const getClothById = async (req, res) => {
 };
 
 export const createCloth = async (req, res) => {
-  const cloth = new Cloth(req.body);
   try {
-    const newCloth = await cloth.save();
+    // Simulate creation with mock data
+    const newCloth = { id: products.length + 1, ...req.body };
     res.status(201).json(newCloth);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -35,9 +34,10 @@ export const createCloth = async (req, res) => {
 
 export const updateCloth = async (req, res) => {
   try {
-    const updatedCloth = await Cloth.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (updatedCloth) {
-      res.json(updatedCloth);
+    const cloth = products.find(p => p.id === parseInt(req.params.id));
+    if (cloth) {
+      Object.assign(cloth, req.body);
+      res.json(cloth);
     } else {
       res.status(404).json({ message: 'Cloth not found' });
     }
@@ -48,8 +48,9 @@ export const updateCloth = async (req, res) => {
 
 export const deleteCloth = async (req, res) => {
   try {
-    const deletedCloth = await Cloth.findByIdAndDelete(req.params.id);
-    if (deletedCloth) {
+    const index = products.findIndex(p => p.id === parseInt(req.params.id));
+    if (index !== -1) {
+      const deletedCloth = products.splice(index, 1)[0];
       res.json(deletedCloth);
     } else {
       res.status(404).json({ message: 'Cloth not found' });
@@ -61,8 +62,9 @@ export const deleteCloth = async (req, res) => {
 
 export const createManyClothes = async (req, res) => {
   try {
-    const clothes = await Cloth.insertMany(req.body);
-    res.status(201).json(clothes);
+    // Simulate inserting many
+    const newClothes = req.body.map((item, index) => ({ id: products.length + index + 1, ...item }));
+    res.status(201).json(newClothes);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

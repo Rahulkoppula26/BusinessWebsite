@@ -15,7 +15,8 @@
     "preview": "vite preview",
     "start": "nodemon src/NodeJS/server.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "vercel-build": "ESBUILD_BINARY_PATH=wasm next build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
@@ -26,6 +27,7 @@
     "@stripe/stripe-js": "^8.4.0",
     "@tailwindcss/vite": "^4.1.17",
     "cors": "^2.8.5",
+    "esbuild": "^0.27.0",
     "express": "^5.1.0",
     "mongodb": "^7.0.0",
     "mongoose": "^9.0.0",
